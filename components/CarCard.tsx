@@ -1,10 +1,10 @@
 "use client"
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Image from 'next/image'
 import { CarProps } from '@/types';
 import CustomButton from './CustomButton';
-import { calculateCarRent } from '@/utils';
+import { calculateCarRent, getCarImageUrl} from '@/utils';
 import CarDetails from './CarDetails';
 
 
@@ -18,6 +18,12 @@ const CarCard = ({car} : CarCardProps) => {
     const carRent = calculateCarRent(String(Year), Engine, Body, Make_Name);
 
     const [isOpen, setIsOpen] = useState(false);
+
+ const [imageUrl, setImageUrl] = useState<string>("");
+ useEffect(() => {
+    const prompt = `${Make_Name} ${Model_Name} ${Year} ${Body} ${Engine}`;
+    getCarImageUrl(prompt).then(setImageUrl);
+  }, [Make_Name, Model_Name, Year, Body, Engine]);
 
   return (
     <div className='car-card group'>
@@ -36,8 +42,10 @@ const CarCard = ({car} : CarCardProps) => {
             </span>
         </p>
             <div className='relative w-full h-40 my-3 object-contain'>
-                <Image src="/hero.png" alt='car model' fill priority className='object-contain' />
-            </div>    
+                
+                <Image src="/por911.avif" alt={`${Make_Name} ${Model_Name}`} fill priority className='object-contain' />
+                
+                </div>    
         <div className='relative flex w-full mt-2'>
             <div className='flex group-hover:invisible w-full justify-between text-gray'>
                 <div className='flex flex-col justify-center items-center gap-2'>
