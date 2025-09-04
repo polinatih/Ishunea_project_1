@@ -6,9 +6,24 @@ export interface CustomButtonProps {
     handleClick?: 
     MouseEventHandler<HTMLButtonElement>;
     btnType?: "button" | "submit";
+    rightIcon?: string;
+    isDisabled?: boolean;
+    textStyles?: string;
 }
 
 export interface SearchManufacturerProps {
     manufacturer: string;
     setManufacturer: (manufacturer: string) => void;
 }
+
+export interface CarProps {
+    Make_ID: number,
+    Make_Name: string,
+    Model_ID: number,
+    Model_Name: string,
+    Year: number,
+     Engine: string,
+     Body: string,
+     Transmission: string,
+     Fuel: string
+    }
