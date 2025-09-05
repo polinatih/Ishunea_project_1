@@ -59,7 +59,7 @@ const CarDetails = ({isOpen, closeModal, car}:CarDetailsProps) => {
                             </div>
                             <div className='flex gap-3'>
                                 <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                <Image src="/front.webp" alt='car model' fill className='object-contain' />  
+                                <Image src="/porsche-911-front.webp" alt='car model' fill className='object-contain' />  
 
                                 </div>
                                 <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>

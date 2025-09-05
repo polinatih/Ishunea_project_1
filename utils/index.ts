@@ -1,7 +1,8 @@
-import { CarProps } from "@/types";
+import { CarProps, FilterProps } from "@/types";
 
 
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps)
+ {  const { manufacturer, year, fuel, limit, model } = filters;
   // Получаем 15 моделей Porsche
   const modelsRes = await fetch(
     "https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/porsche?format=json"
@@ -73,27 +74,14 @@ export const calculateCarRent = (Year: string, Engine: string, Body: string, Mak
   return rentalRate.toFixed(0);
 };
 
-export async function getCarImageUrl(prompt: string): Promise<string> {
-  const response = await fetch("https://api.deepai.org/api/text2img", {
-    method: "POST",
-    headers: {
-      "Api-Key": "a56eaecb-a625-4edb-9722-283a934945c0",   // сюда вставь свой ключ
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: new URLSearchParams({
-      prompt: prompt
-    })
-  });
 
-  if (!response.ok) {
-    throw new Error(`DeepAI API error: ${response.status}`);
-  }
+export const updateSearchParams = (type: string, value: string) => {
 
-  const data = await response.json();
-  return data.output_url;  // прямой URL сгенерированного изображения
+const searchParams = new URLSearchParams(window.location.search)
+
+
+    
+        searchParams.set(type, value)
+        const newPathname = `${window.location.pathname}?${searchParams.toString()}`
+return newPathname;
 }
-
-
-
-
-

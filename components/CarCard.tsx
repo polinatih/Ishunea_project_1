@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react'
 import Image from 'next/image'
 import { CarProps } from '@/types';
 import CustomButton from './CustomButton';
-import { calculateCarRent, getCarImageUrl} from '@/utils';
+import { calculateCarRent} from '@/utils';
 import CarDetails from './CarDetails';
 
 
@@ -19,11 +19,7 @@ const CarCard = ({car} : CarCardProps) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
- const [imageUrl, setImageUrl] = useState<string>("");
- useEffect(() => {
-    const prompt = `${Make_Name} ${Model_Name} ${Year} ${Body} ${Engine}`;
-    getCarImageUrl(prompt).then(setImageUrl);
-  }, [Make_Name, Model_Name, Year, Body, Engine]);
+
 
   return (
     <div className='car-card group'>
